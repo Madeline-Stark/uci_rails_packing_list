@@ -13,12 +13,18 @@ class ItemsController < ApplicationController
         @item = Item.new
     end
 
+    def create
+        @item = Item.create(item_params)
+        redirect_to item_path(@item)
+    end
+
     def edit
         
     end
 
     def update
-
+        @item.update(item_params)
+        redirect_to item_path(@item)
     end
 
     def destroy
@@ -31,5 +37,9 @@ class ItemsController < ApplicationController
     def set_item
         @item = Item.find(params[:id])
     end
+
+    def item_params
+        params.require(:item).permit(:name, :quantity)
+    end 
 
 end
