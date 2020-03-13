@@ -1,0 +1,4 @@
+<h2><%= @list.name %></h2>
+<ol><% @list.items.each do |item| %>
+    <li><%= item.name %> - <%= item.quantity %></li>
+<% end %></ol>
