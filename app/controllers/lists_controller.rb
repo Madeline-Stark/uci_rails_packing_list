@@ -4,11 +4,10 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @list.items.build
+    2.times {@list.items.build}
   end
 
   def create
-    binding.pry
     @list = List.new(list_params)
     if @list.save
       redirect_to list_path(@list)
@@ -32,6 +31,7 @@ class ListsController < ApplicationController
   end
 
   def index
+    @lists = List.all
   end
 
   def show
@@ -40,7 +40,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :items_attributes => [:name])
+    params.require(:list).permit(:name, :items_attributes => [:name, :quantity])
   end 
 
   def find_list
