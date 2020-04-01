@@ -8,13 +8,10 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+  <%= navbar %>
+  </header>
   <body>
     <%= yield %>
   </body>
-  <footer>
-    <%= current_time %>
-    <%= link_to "All lists", lists_path %>
-    <%= link_to "New List", new_list_path %>
-  </footer>
 </html>
