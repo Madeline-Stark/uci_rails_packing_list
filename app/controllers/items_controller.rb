@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
     before_action :set_item, only: [:show, :edit, :update, :destroy]
+    before_action :require_login
 
     def index 
         @items = Item.all
@@ -14,8 +15,12 @@ class ItemsController < ApplicationController
     end
 
     def create
-        @item = Item.create(item_params)
-        redirect_to item_path(@item)
+        @item = List.first.items.build(item_params)
+        if @item.save
+            redirect_to item_path(@item)
+        else 
+            redirect_to new_item_path, alert: "wrong"
+        end 
     end
 
     def edit

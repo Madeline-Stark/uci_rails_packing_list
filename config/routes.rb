@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :items
   resources :lists
 
-  resources :users, only: [:new, :create]
+  get "/signup", to: "users#new", as: "signup"
+  resources :users, only: [:create]
 
   get '/login', to: "sessions#new", as: "login"
   post '/login', to: "sessions#create"
